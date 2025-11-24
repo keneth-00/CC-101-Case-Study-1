@@ -23,7 +23,7 @@ double computeSalary(double hours, double hourlyRate, double otPay, double bonus
  
 void displaySummary(string id, string name, double hours, double hourlyRate, double grossPay, double otPay, double bonusPay, double sssContri, double pagibigContri, double philHealth, double cashAdvance, double sssLoan, double pagibigLoan, double others, double totalDeduction, double netPay)
  {
- 	cout<<endl<<"====SALARY PAYSLIP===="<<endl<<endl;
+ 	cout<<endl<<"======SALARY PAYSLIP======"<<endl<<endl;
  	cout<<"Employee ID Number: "<<id<<endl;
  	cout<<"Employee Name: "<<name<<endl<<endl;
  	cout<<"Hours Worked: "<<hours<<endl;
@@ -44,7 +44,7 @@ void displaySummary(string id, string name, double hours, double hourlyRate, dou
  	cout<<"Total Deductions: "<<totalDeduction<<endl<<endl;
  	
  	cout<<"Net Pay: "<<netPay<<endl<<endl;
- 	cout<<"======================"<<endl<<endl;
+ 	cout<<"=========================="<<endl<<endl;
  }
  	
 int main()
@@ -107,7 +107,7 @@ int main()
  
 		grossPay = computeSalary(hours, hourlyRate, otPay, bonusPay, grossPay);
 			
-		cout<<endl<<"Employee Loans (0 if none)"<<endl;
+		cout<<endl<<"———Enter Deductions (0 if none)———"<<endl;
 		cout<<"SSS Contribution: ";
 		cin>>sssContri;
 		cout<<"Pag-Ibig Contribution: ";
