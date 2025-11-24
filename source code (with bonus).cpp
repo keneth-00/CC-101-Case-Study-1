@@ -21,7 +21,7 @@ double computeSalary(double hours, double hourlyRate, double otPay, double bonus
     return grossPay;
 }
  
-void displaySummary(string id, string name, double hours, double hourlyRate, double grossPay, double otPay, double bonusPay, double sssContri, double pagibigContri, double philHealth, double cashAdvance, double sssLoan, double pagibigLoan, double others, double totalDeduction, double netPay)
+void displaySummary(string id, string name, double hours, double hourlyRate, double grossPay, double otPay, double bonusPay, double cashAdvance, double sssContri, double sssLoan, double pagibigContri, double pagibigLoan, double philHealth, double others, double totalDeduction, double netPay)
  {
  	cout<<endl<<"======SALARY PAYSLIP======"<<endl<<endl;
  	cout<<"Employee ID Number: "<<id<<endl;
@@ -33,12 +33,12 @@ void displaySummary(string id, string name, double hours, double hourlyRate, dou
  	cout<<"Bonus: "<<bonusPay<<endl<<endl;
  	
  	cout<<"DEDUCTIONS"<<endl;
- 	cout<<endl<<"SSS Contribution: "<<sssContri<<endl;
- 	cout<<"Pag-Ibig Contribution: "<<pagibigContri<<endl;
- 	cout<<"PhilHealth: "<<philHealth<<endl;
- 	cout<<"Cash Advance: "<<cashAdvance<<endl;
+ 	cout<<endl<<"Cash Advance: "<<cashAdvance<<endl;
+ 	cout<<"SSS Contribution: "<<sssContri<<endl;
  	cout<<"SSS Loan: "<<sssLoan<<endl;
+ 	cout<<"Pag-Ibig Contribution: "<<pagibigContri<<endl;
  	cout<<"Pag-Ibig MPL: "<<pagibigLoan<<endl;
+ 	cout<<"PhilHealth: "<<philHealth<<endl;
  	cout<<"Others:  "<<others<<endl<<endl;
  	
  	cout<<"Total Deductions: "<<totalDeduction<<endl<<endl;
@@ -108,26 +108,26 @@ int main()
 		grossPay = computeSalary(hours, hourlyRate, otPay, bonusPay, grossPay);
 			
 		cout<<endl<<"———Enter Deductions (0 if none)———"<<endl;
-		cout<<"SSS Contribution: ";
-		cin>>sssContri;
-		cout<<"Pag-Ibig Contribution: ";
-		cin>>pagibigContri;
-		cout<<"PhilHealth: ";
-		cin>>philHealth;
 		cout<<"Cash Advance: ";
 		cin>>cashAdvance;
+		cout<<"SSS Contribution: ";
+		cin>>sssContri;
 		cout<<"SSS Loan: ";
 		cin>>sssLoan;
+		cout<<"Pag-Ibig Contribution: ";
+		cin>>pagibigContri;
 		cout<<"Pag-Ibig MPL: ";
 		cin>>pagibigLoan;
+		cout<<"PhilHealth: ";
+		cin>>philHealth;
 		cout<<"Others: ";
 		cin>>others;
 
-		totalDeduction = sssContri + pagibigContri + philHealth + cashAdvance + sssLoan + pagibigLoan + others;
+		totalDeduction = cashAdvance + sssContri + sssLoan + pagibigContri + pagibigLoan + philHealth + others;
 		
 		netPay = grossPay - totalDeduction;
 		
-		displaySummary(id, name, hours, hourlyRate, grossPay, otPay, bonusPay, sssContri, pagibigContri, philHealth, cashAdvance, sssLoan, pagibigLoan, others, totalDeduction, netPay);
+		displaySummary(id, name, hours, hourlyRate, grossPay, otPay, bonusPay, cashAdvance, sssContri, sssLoan, pagibigContri, pagibigLoan, philHealth, others, totalDeduction, netPay);
 
 	}
 			
