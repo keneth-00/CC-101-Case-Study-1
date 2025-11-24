@@ -2,145 +2,101 @@
 #include <cstdlib>
 
 using namespace std;
-
-void TITLE()
-{
-	cout<<"SALARY PAYSLIP"<<endl<<endl;
-}
-
-int tax(long x)
-{
-	int y;
-	
-	if (x > 20900)
-	{
-		y = x * 0.0125;
-		
-		cout<<"You have a 15% tax rate."<<endl<<endl;
-			
-		return y;
-	}
-		else if (x > 33400)
-		{
-			y = x * 0.0166;
-			
-			cout<<"You have a 20% tax rate."<<endl<<endl;
-			
-			return y;
-		}
-			else if (x > 66700)
-			{
-				y = x * 0.020;
-				
-				cout<<"You have a 25% tax rate."<<endl<<endl;
-				
-				return y;
-			}
-				else if (x > 166700)
-				{
-					y = x * 0.025;
-					
-					cout<<"You have a 30% tax rate."<<endl<<endl;
-				
-					return y;
-				}
-					else if (x > 666700)
-					{
-						y = x * 0.029;
-						
-						cout<<"You have a 35% tax rate."<<endl<<endl;
-				
-						return y;
-					}
-						else
-						{
-							cout<<"You have a 0% tax rate."<<endl<<endl;
-							
-							return 0;
-						}
-}
-
-int addTaxes(int a, int b, int c, int d)
-{
-	int sum = a + b + c + d;
-	
-	return sum;
-}
-
+ 
+double computeSalary(double hours, double hourlyRate, double otPay, double grossPay)
+ {
+ 	grossPay = (hours * hourlyRate) + otPay;
+ 	
+ 	return grossPay;
+ }
+ 
+void displaySummary(string id, string name, double hours, double hourlyRate, double grossPay, double otPay, double sssContri, double pagibigContri, double philHealth, double cashAdvance, double sssLoan, double pagibigLoan, double others, double totalDeduction, double netPay)
+ {
+ 	cout<<endl<<"====SALARY PAYSLIP===="<<endl<<endl;
+ 	cout<<"Employee ID Number: "<<id<<endl;
+ 	cout<<"Employee Name: "<<name<<endl<<endl;
+ 	cout<<"Hours Worked: "<<hours<<endl;
+ 	cout<<"Hourly Rate: "<<hourlyRate<<endl<<endl;
+ 	cout<<"Gross Pay: "<<grossPay<<endl;
+ 	cout<<"Overtime Pay: "<<otPay<<endl<<endl;
+ 	
+ 	cout<<"DEDUCTIONS"<<endl;
+ 	cout<<endl<<"SSS Contribution: "<<sssContri<<endl;
+ 	cout<<"Pag-Ibig Contribution: "<<pagibigContri<<endl;
+ 	cout<<"PhilHealth: "<<philHealth<<endl;
+ 	cout<<"Cash Advance: "<<cashAdvance<<endl;
+ 	cout<<"SSS Loan: "<<sssLoan<<endl;
+ 	cout<<"Pag-Ibig MPL: "<<pagibigLoan<<endl;
+ 	cout<<"Others:  "<<others<<endl<<endl;
+ 	
+ 	cout<<"Total Deductions: "<<totalDeduction<<endl<<endl;
+ 	
+ 	cout<<"Net Pay: "<<netPay<<endl<<endl;
+ 	cout<<"======================"<<endl<<endl;
+ }
+ 	
 int main()
 {
-	string name;
-	int pay;
-	int hours;
-	int grossSalary;
-	int totalSalary;
-	double otPay;
-	int otHours;
-	double sss;
-	double pagibig;
-	double philhealth;
-	int taxRate;
-	int totalDeduction;
-	int netPay;
-	char answer = 'Y';
-
-	TITLE();
+	int n;
 	
-	while (answer == 'Y' || answer == 'y')
+	cout<<"SALARY PAYSLIP"<<endl<<endl;
+	cout<<"Enter number of employees to process: ";
+	cin>>n;
+	
+	for (int l = 0; l < n; l++)
 	{
-		cout<<"Enter your name: ";
-		getline(cin, name);
-		cout<<"Enter your pay per hour: ";
-		cin>>pay;
-		cout<<"Enter your hours worked: ";
-		cin>>hours;
+		string id, name;
+		double hours, hourlyRate, grossPay, otHours, otRate, otPay, netPay;
+		double cashAdvance, sssContri, pagibigContri, philHealth, sssLoan, pagibigLoan, others, totalDeduction;
 		
-		grossSalary = pay * hours;
-		
-		cout<<endl<<"Gross Pay: "<<grossSalary<<endl;
-		
-		if (hours > 160) 
-		{
-			otHours = hours - 160;
-			otPay = otHours * (pay * 0.25);
-			
-			cout<<"Overtime Pay: "<<otPay<<endl<<endl;
-		}
-			else 
-			{
-				cout<<"You did not work overtime."<<endl<<endl;
-			}
-		
-		totalSalary = grossSalary + otPay;
-		
-		cout<<"Total Salary: "<<totalSalary<<endl;
-		
-		taxRate = tax(totalSalary);
-		
-		sss = totalSalary * 0.10;
-		pagibig = totalSalary * 0.02;
-		philhealth = totalSalary * 0.05;
-		
-		totalDeduction = addTaxes(sss, pagibig, philhealth, taxRate);
-				
-		cout<<"DEDUCTIONS"<<endl;
-		cout<<"SSS Contribution: "<<sss<<endl;
-		cout<<"PAG-IBIG Contribution: "<<pagibig<<endl;
-		cout<<"PhilHealth: "<<philhealth<<endl;
-		cout<<"Tax Deduction: "<<taxRate<<endl<<endl;
-
-		cout<<"Total Deduction: "<<totalDeduction<<endl<<endl;
-		
-		netPay = totalSalary - totalDeduction;
-
-		cout<<"Net Pay: "<<netPay<<endl<<endl;
-		
-		cout<<"Do you want another payslip (Y/N)?: ";
-		cin>>answer;
+		cout<<"ENTER EMPLOYEE "<<l + 1<<" DETAILS: "<<endl<<endl;
+		cout<<"ID Number: ";
+		cin>>id;
+		cout<<"Employee Name: ";
 		cin.ignore();
+		getline(cin, name);
+		
+		cout<<endl<<"Enter hours worked: ";
+		cin>>hours;
+		cout<<"Enter hourly rate: ";
+		cin>>hourlyRate;
+		
+		if (hours > 160)
+ 	{
+ 		otHours = hours - 160;
+ 		otRate = hourlyRate * 1.25;
+ 		otPay = otHours * otRate;
+ 	}
+ 		else 
+ 		{
+ 			otPay = 0;
+ 		}		
+ 
+		grossPay = computeSalary(hours, hourlyRate, otPay, grossPay);
+			
+		cout<<endl<<"Employee Loans (0 if none)"<<endl;
+		cout<<"SSS Contribution: ";
+		cin>>sssContri;
+		cout<<"Pag-Ibig Contribution: ";
+		cin>>pagibigContri;
+		cout<<"PhilHealth: ";
+		cin>>philHealth;
+		cout<<"Cash Advance: ";
+		cin>>cashAdvance;
+		cout<<"SSS Loan: ";
+		cin>>sssLoan;
+		cout<<"Pag-Ibig MPL: ";
+		cin>>pagibigLoan;
+		cout<<"Others: ";
+		cin>>others;
+
+		totalDeduction = sssContri + pagibigContri + philHealth + cashAdvance + sssLoan + pagibigLoan + others;
+		
+		netPay = grossPay - totalDeduction;
+		
+		displaySummary(id, name, hours, hourlyRate, grossPay, otPay, sssContri, pagibigContri, philHealth, cashAdvance, sssLoan, pagibigLoan, others, totalDeduction, netPay);
+
 	}
-	
-	cout<<endl<<endl;
-	
+			
 	return EXIT_SUCCESS;
 }
