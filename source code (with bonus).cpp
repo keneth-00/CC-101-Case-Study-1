@@ -3,7 +3,7 @@
 
 using namespace std;
  
-double computeSalary(double hours, double hourlyRate, double otPay, double bonusPay, double grossPay)
+double computeSalary(double hours, double hourlyRate, double otPay, double bonusPay, double grossSalary)
 {
     double regularHours;
     
@@ -16,24 +16,25 @@ double computeSalary(double hours, double hourlyRate, double otPay, double bonus
     		regularHours = hours;
     	}
     	
-    grossPay = (regularHours * hourlyRate) + otPay + bonusPay;
+    grossSalary = (regularHours * hourlyRate) + otPay + bonusPay;
     
-    return grossPay;
+    return grossSalary;
 }
  
-void displaySummary(string id, string name, double hours, double hourlyRate, double grossPay, double otPay, double bonusPay, double cashAdvance, double sssContri, double sssLoan, double pagibigContri, double pagibigLoan, double philHealth, double others, double totalDeduction, double netPay)
+void displaySummary(string id, string name, double hours, double hourlyRate, double grossSalary, double otPay, double bonusPay, double cashAdvance, double sssContri, double sssLoan, double pagibigContri, double pagibigLoan, double philHealth, double others, double totalDeduction, double netPay)
  {
- 	cout<<endl<<"======SALARY PAYSLIP======"<<endl<<endl;
+ 	cout<<endl<<endl<<"========SALARY PAYSLIP========"<<endl<<endl;
  	cout<<"Employee ID Number: "<<id<<endl;
  	cout<<"Employee Name: "<<name<<endl<<endl;
  	cout<<"Hours Worked: "<<hours<<endl;
  	cout<<"Hourly Rate: "<<hourlyRate<<endl<<endl;
- 	cout<<"Gross Pay: "<<grossPay<<endl;
+ 	cout<<"Gross Salary: "<<grossSalary<<endl;
+ 	cout<<endl<<"ADDITIONAL (already added in Gross Salary)"<<endl;
  	cout<<"Overtime Pay: "<<otPay<<endl;
  	cout<<"Bonus: "<<bonusPay<<endl<<endl;
  	
  	cout<<"DEDUCTIONS"<<endl;
- 	cout<<endl<<"Cash Advance: "<<cashAdvance<<endl;
+ 	cout<<"Cash Advance: "<<cashAdvance<<endl;
  	cout<<"SSS Contribution: "<<sssContri<<endl;
  	cout<<"SSS Loan: "<<sssLoan<<endl;
  	cout<<"Pag-Ibig Contribution: "<<pagibigContri<<endl;
@@ -44,12 +45,15 @@ void displaySummary(string id, string name, double hours, double hourlyRate, dou
  	cout<<"Total Deductions: "<<totalDeduction<<endl<<endl;
  	
  	cout<<"Net Pay: "<<netPay<<endl<<endl;
- 	cout<<"=========================="<<endl<<endl;
+ 	cout<<"=============================="<<endl<<endl;
  }
  	
 int main()
 {
-	int n;
+	int n, category;
+	string id, name;
+		double hours, hourlyRate, grossSalary, otHours, otRate, otPay, bonusPay, netPay;
+		double cashAdvance, sssContri, pagibigContri, philHealth, sssLoan, pagibigLoan, others, totalDeduction;
 	
 	cout<<"SALARY PAYSLIP"<<endl<<endl;
 	cout<<"Enter number of employees to process: ";
@@ -57,12 +61,7 @@ int main()
 	
 	for (int l = 0; l < n; l++)
 	{
-		string id, name;
-		double hours, hourlyRate, grossPay, otHours, otRate, otPay, bonusPay, netPay;
-		double cashAdvance, sssContri, pagibigContri, philHealth, sssLoan, pagibigLoan, others, totalDeduction;
-		int category;
-		
-		cout<<"ENTER EMPLOYEE "<<l + 1<<" DETAILS: "<<endl<<endl;
+		cout<<endl<<"ENTER EMPLOYEE "<<l + 1<<" DETAILS: "<<endl;
 		cout<<"ID Number: ";
 		cin>>id;
 		cout<<"Employee Name: ";
@@ -105,7 +104,7 @@ int main()
  				break;
  		}
  
-		grossPay = computeSalary(hours, hourlyRate, otPay, bonusPay, grossPay);
+		grossSalary = computeSalary(hours, hourlyRate, otPay, bonusPay, grossSalary);
 			
 		cout<<endl<<"———Enter Deductions (0 if none)———"<<endl;
 		cout<<"Cash Advance: ";
@@ -125,9 +124,9 @@ int main()
 
 		totalDeduction = cashAdvance + sssContri + sssLoan + pagibigContri + pagibigLoan + philHealth + others;
 		
-		netPay = grossPay - totalDeduction;
+		netPay = grossSalary - totalDeduction;
 		
-		displaySummary(id, name, hours, hourlyRate, grossPay, otPay, bonusPay, cashAdvance, sssContri, sssLoan, pagibigContri, pagibigLoan, philHealth, others, totalDeduction, netPay);
+		displaySummary(id, name, hours, hourlyRate, grossSalary, otPay, bonusPay, cashAdvance, sssContri, sssLoan, pagibigContri, pagibigLoan, philHealth, others, totalDeduction, netPay);
 
 	}
 			
