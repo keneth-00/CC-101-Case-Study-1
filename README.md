@@ -1,1 +1,1 @@
-# CC-101-Case-Study-1
+# CC-101-Case-Study
