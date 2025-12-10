@@ -2,9 +2,13 @@
 #include <cstdlib>
 
 using namespace std;
+
+//Function to compute salary
  
 double computeSalary(double hoursWorked, double hourlyPay, double overTime, double bonus)
 {
+    //Conditional statement to separate overtime pay from regular pay
+
     double regularHours;
     double grossPay;
     
@@ -22,6 +26,8 @@ double computeSalary(double hoursWorked, double hourlyPay, double overTime, doub
     return grossPay;
 }
  
+//Function to display payslip summary
+
 void displaySummary(string idNum, string eName, double hoursWorked, double hourlyPay, double grossPay, double overTime, double bonus, double cashLoan, double sss, double sssL, double pagibig, double pagibigL, double philH, double otherDeduct, double totalDeduct, double netSalary)
  {
  	cout<<endl<<endl<<"========SALARY PAYSLIP========"<<endl<<endl;
@@ -48,7 +54,9 @@ void displaySummary(string idNum, string eName, double hoursWorked, double hourl
  	cout<<"Net Pay: "<<netSalary<<endl<<endl;
  	cout<<"=============================="<<endl<<endl;
  }
- 	
+
+//Main source code
+
 int main()
 {
 	int n, category;
@@ -56,24 +64,35 @@ int main()
 		double hours, hourlyRate, grossSalary, otPay, bonusPay, netPay;
 		double cashAdvance, sssContri, pagibigContri, philHealth, sssLoan, pagibigLoan, others, totalDeduction;
 	
+//Ask for number of employees to process
+
 	cout<<"SALARY PAYSLIP"<<endl<<endl;
 	cout<<"Enter number of employees to process: ";
 	cin>>n;
-	
+
+//Loop to process multiple employees
+
 	for (int l = 0; l < n; l++)
 	{
+
+//Ask for employee details
+
 		cout<<endl<<"ENTER EMPLOYEE "<<l + 1<<" DETAILS: "<<endl;
 		cout<<"ID Number: ";
 		cin>>id;
 		cout<<"Employee Name: ";
 		cin.ignore();
 		getline(cin, name);
-		
+	
+//Ask for hours and rate
+
 		cout<<endl<<"Enter hours worked: ";
 		cin>>hours;
 		cout<<"Enter hourly rate: ";
 		cin>>hourlyRate;
 		
+//Conditional statement to compute overtime pay
+
 		if (hours > 160)
  	{
  		otPay = (hours - 160) * (hourlyRate * 1.25);
@@ -83,6 +102,8 @@ int main()
  			otPay = 0;
  		}	
  		
+//Select bonus category
+
  		cout<<endl<<"Select a bonus category (1 - Standard, 2 - Premium, 3 - None): ";
  		cin>>category;
  		
@@ -102,9 +123,13 @@ int main()
  				bonusPay = 0;
  				break;
  		}
- 
+
+//Call function to compute salary
+
 		grossSalary = computeSalary(hours, hourlyRate, otPay, bonusPay);
-			
+		
+//Input deductions
+	
 		cout<<endl<<"———Enter Deductions (0 if none)———"<<endl;
 		cout<<"Cash Advance: ";
 		cin>>cashAdvance;
@@ -121,10 +146,16 @@ int main()
 		cout<<"Others: ";
 		cin>>others;
 
+//Compute total deductions
+
 		totalDeduction = cashAdvance + sssContri + sssLoan + pagibigContri + pagibigLoan + philHealth + others;
-		
+	
+//Compute netpay
+
 		netPay = grossSalary - totalDeduction;
 		
+//Call function to display payslip summary
+
 		displaySummary(id, name, hours, hourlyRate, grossSalary, otPay, bonusPay, cashAdvance, sssContri, sssLoan, pagibigContri, pagibigLoan, philHealth, others, totalDeduction, netPay);
 
 	}
